@@ -1,0 +1,46 @@
+{
+  "name": "chisel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "tsc --noEmit --project tsconfig.build.json && vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-accessible-icon": "^1.1.7",
+    "@radix-ui/react-direction": "^1.1.1",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-visually-hidden": "^1.2.3",
+    "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-form": "^1.15.0",
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-router": "^1.130.8",
+    "@tanstack/react-start": "^1.130.8",
+    "@tanstack/react-store": "^0.7.3",
+    "@tanstack/react-table": "^8.21.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.534.0",
+    "radix-ui": "^1.4.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
