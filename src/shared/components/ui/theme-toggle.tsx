@@ -1,5 +1,6 @@
 import { useTheme } from "@/shared/hooks/theme-hook";
 import { themeStore } from "@/store/theme";
+import { Button } from "./button";
 
 export function ThemeToggle() {
   const theme = useTheme();
@@ -8,5 +9,9 @@ export function ThemeToggle() {
     themeStore.setState(theme === "light" ? "dark" : "light");
   };
 
-  return <button onClick={toggleTheme}>{`Current theme: ${theme}`}</button>;
+  return (
+    <Button onClick={toggleTheme} variant="primary">
+      {theme}
+    </Button>
+  );
 }
