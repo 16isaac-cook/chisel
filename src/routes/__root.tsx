@@ -6,10 +6,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import "../shared/styles/globals.css";
+import "@/shared/styles/globals.css";
 import { initPersistence } from "@/init/persistent-stores";
 import { useThemeClass } from "@/shared/hooks/theme-hook";
-import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
+import { SidebarProvider } from "@/shared/context/sidebar-context";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -25,6 +25,21 @@ export const Route = createRootRoute({
         title: "TanStack Start Starter",
       },
     ],
+    styles: [
+      {
+        children: `
+          #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+          }
+        `,
+      },
+    ],
   }),
   component: RootComponent,
 });
@@ -32,24 +47,56 @@ export const Route = createRootRoute({
 function RootComponent() {
   useEffect(() => {
     initPersistence();
+
+    const loadingScreen = document.getElementById("loading-screen");
+    if (!loadingScreen) return;
+
+    const cssLinks = document.querySelectorAll<HTMLLinkElement>(
+      'link[rel="stylesheet"]'
+    );
+    const cssLink = Array.from(cssLinks).find((link) =>
+      link.href.includes("globals.css")
+    );
+
+    if (cssLink) {
+      if ((cssLink as HTMLLinkElement).sheet) {
+        hideLoading();
+      } else {
+        cssLink.addEventListener("load", hideLoading);
+      }
+    } else {
+      hideLoading();
+    }
+
+    function hideLoading() {
+      if (!loadingScreen) return;
+      loadingScreen.remove();
+    }
+
+    return () => {
+      cssLink?.removeEventListener("load", hideLoading);
+    };
   }, []);
 
   useThemeClass();
+
   return (
     <RootDocument>
-      <ThemeToggle />
-      <Outlet />
+      <SidebarProvider>
+        <Outlet />
+      </SidebarProvider>
     </RootDocument>
   );
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html className="dark">
       <head>
         <HeadContent />
       </head>
       <body>
+        <div id="loading-screen"></div>
         {children}
         <Scripts />
       </body>
