@@ -44,6 +44,15 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      '@tauri-apps/api':
+        specifier: ^2.7.0
+        version: 2.7.0
+      '@tauri-apps/plugin-fs':
+        specifier: ~2
+        version: 2.4.1
+      '@tauri-apps/plugin-store':
+        specifier: ~2.3.0
+        version: 2.3.0
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1915,6 +1924,9 @@ packages:
     resolution: {integrity: sha512-a+MxoAXG+Sq94Jp67OtveKOp2vQq75AWdVI8DRt6w19B0NEqpfm784FTLbVp/qdR1wmxCOmKAvElGSIiBOx5OQ==}
     engines: {node: '>=12'}
 
+  '@tauri-apps/api@2.7.0':
+    resolution: {integrity: sha512-v7fVE8jqBl8xJFOcBafDzXFc8FnicoH3j8o8DNNs0tHuEBmXUDqrCOAzMRX0UkfpwqZLqvrvK0GNQ45DfnoVDg==}
+
   '@tauri-apps/cli-darwin-arm64@2.7.1':
     resolution: {integrity: sha512-j2NXQN6+08G03xYiyKDKqbCV2Txt+hUKg0a8hYr92AmoCU8fgCjHyva/p16lGFGUG3P2Yu0xiNe1hXL9ZuRMzA==}
     engines: {node: '>= 10'}
@@ -1985,6 +1997,12 @@ packages:
     resolution: {integrity: sha512-RcGWR4jOUEl92w3uvI0h61Llkfj9lwGD1iwvDRD2isMrDhOzjeeeVn9aGzeW1jubQ/kAbMYfydcA4BA0Cy733Q==}
     engines: {node: '>= 10'}
     hasBin: true
+
+  '@tauri-apps/plugin-fs@2.4.1':
+    resolution: {integrity: sha512-vJlKZVGF3UAFGoIEVT6Oq5L4HGDCD78WmA4uhzitToqYiBKWAvZR61M6zAyQzHqLs0ADemkE4RSy/5sCmZm6ZQ==}
+
+  '@tauri-apps/plugin-store@2.3.0':
+    resolution: {integrity: sha512-mre8er0nXPhyEWQzWCpUd+UnEoBQYcoA5JYlwpwOV9wcxKqlXTGfminpKsE37ic8NUb2BIZqf0QQ9/U3ib2+/A==}
 
   '@types/babel__code-frame@7.0.6':
     resolution: {integrity: sha512-Anitqkl3+KrzcW2k77lRlg/GfLZLWXBuNgbEcIOU6M92yw42vsd3xV/Z/yAHEj8m+KUjL6bWOVOFqX8PFPJ4LA==}
@@ -6241,6 +6259,8 @@ snapshots:
 
   '@tanstack/virtual-file-routes@1.129.7': {}
 
+  '@tauri-apps/api@2.7.0': {}
+
   '@tauri-apps/cli-darwin-arm64@2.7.1':
     optional: true
 
@@ -6287,6 +6307,14 @@ snapshots:
       '@tauri-apps/cli-win32-arm64-msvc': 2.7.1
       '@tauri-apps/cli-win32-ia32-msvc': 2.7.1
       '@tauri-apps/cli-win32-x64-msvc': 2.7.1
+
+  '@tauri-apps/plugin-fs@2.4.1':
+    dependencies:
+      '@tauri-apps/api': 2.7.0
+
+  '@tauri-apps/plugin-store@2.3.0':
+    dependencies:
+      '@tauri-apps/api': 2.7.0
 
   '@types/babel__code-frame@7.0.6': {}
 

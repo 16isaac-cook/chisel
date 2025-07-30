@@ -35,7 +35,7 @@
 @import "@radix-ui/colors/purple-dark-alpha.css";
 @import "@radix-ui/colors/violet-dark-alpha.css";
 
-:root, .dark {
+:root, .light, .dark {
     --mauve1: var(--mauve-1);
     --mauve2: var(--mauve-2);
     --mauve3: var(--mauve-3);

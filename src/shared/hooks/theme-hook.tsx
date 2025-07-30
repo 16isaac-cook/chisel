@@ -1,11 +1,17 @@
+import { themeStore } from "@/store/theme";
+import { useStore } from "@tanstack/react-store";
 import { useEffect } from "react";
 
-/**
- * Hook to enable or disable dark mode by toggling '.dark' class on <html>
- * @param enabled - whether dark mode should be enabled
- */
-export function useDarkMode(enabled: boolean) {
-    useEffect(() => {
-        
-    })
+export function useTheme() {
+  const theme = useStore(themeStore);
+  return theme;
+}
+
+export function useThemeClass() {
+  const theme = useStore(themeStore);
+
+  useEffect(() => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+  }, [theme]);
 }

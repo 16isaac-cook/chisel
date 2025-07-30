@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import {
   Outlet,
   createRootRoute,
@@ -7,6 +7,9 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import "../shared/styles/globals.css";
+import { initPersistence } from "@/init/persistent-stores";
+import { useThemeClass } from "@/shared/hooks/theme-hook";
+import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,8 +30,14 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  useEffect(() => {
+    initPersistence();
+  }, []);
+
+  useThemeClass();
   return (
     <RootDocument>
+      <ThemeToggle />
       <Outlet />
     </RootDocument>
   );

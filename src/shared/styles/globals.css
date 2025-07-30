@@ -220,3 +220,13 @@
     --color-alpha-violet-text-low: var(--violet11a);
     --color-alpha-violet-text-high: var(--violet12a);
 }
+
+@layer base {
+    * {
+        @apply border-mauve-subtle-border outline-mauve-ui-border;
+    }
+
+    body {
+        @apply bg-mauve-app-bg text-mauve-text-high;
+    }
+}
