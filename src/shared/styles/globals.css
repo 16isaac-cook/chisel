@@ -2,7 +2,33 @@
 @import "./radix-colors.css";
 
 @theme inline {
+    --spacing: 0.3rem;
     --color-*: initial;
+    --color-bg: var(--mauve1);
+    --color-subtle: var(--mauve2);
+    --color-ui: var(--mauve3);
+    --color-ui-hover: var(--mauve4);
+    --color-ui-active: var(--mauve5);
+    --color-border: var(--mauve6);
+    --color-border-ui: var(--mauve7);
+    --color-border-ui-hover: var(--mauve8);
+    --color-solid: var(--mauve9);
+    --color-solid-hover: var(--mauve10);
+    --color-text-low: var(--mauve11);
+    --color-text-high: var(--mauve12);
+    --color-primary: var(--purple9);
+    --color-primary-hover: var(--purple10);
+    --color-primary-text: var(--purple12);
+    --color-primary-text-hover: var(--purple11);
+    --color-primary-focus: var(--purple7);
+    --color-primary-active: var(--purple5);
+    --color-destructive: var(--tomato9);
+    --color-destructive-hover: var(--tomato10);
+    --color-destructive-text: var(--tomato12);
+    --color-destructive-text-hover: var(--tomato11);
+    --color-destructive-focus: var(--tomato7);
+    --color-destructive-focus: var(--tomato5);
+
     --color-mauve-app-bg: var(--mauve1);
     --color-mauve-subtle-bg: var(--mauve2);
     --color-mauve-ui-bg: var(--mauve3);
@@ -223,10 +249,10 @@
 
 @layer base {
     * {
-        @apply border-mauve-subtle-border outline-mauve-ui-border;
+        @apply border-border outline-border-ui;
     }
 
     body {
-        @apply bg-mauve-app-bg text-mauve-text-high;
+        @apply bg-bg text-text-high;
     }
 }
