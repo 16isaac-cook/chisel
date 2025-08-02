@@ -9,6 +9,7 @@ import {
 import appCss from "@/shared/styles/globals.css?url";
 import { loadSettings } from "@/stores/settings-store";
 import { ThemeProvider } from "@/shared/context/theme-context";
+import Layout from "@/shared/components/layout";
 
 export const Route = createRootRoute({
 	head: () => ({
@@ -42,7 +43,9 @@ function RootComponent() {
 	return (
 		<RootDocument>
 			<ThemeProvider>
-				<Outlet />
+				<Layout>
+					<Outlet />
+				</Layout>
 			</ThemeProvider>
 		</RootDocument>
 	);
