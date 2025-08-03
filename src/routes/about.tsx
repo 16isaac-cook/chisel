@@ -1,5 +1,6 @@
 import useSidebar from "@/shared/hooks/use-sidebar";
 import { createFileRoute } from "@tanstack/react-router";
+import { Info } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
 	component: RouteComponent,
@@ -7,6 +8,7 @@ export const Route = createFileRoute("/about")({
 		meta: [
 			{
 				title: "About",
+				icon: <Info />,
 			},
 		],
 	}),

@@ -1,4 +1,4 @@
-import { RootLevelNav } from "@/shared/components/root-nav";
+import { IndexNav } from "@/shared/components/index-nav";
 import useSidebar from "@/shared/hooks/use-sidebar";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -11,7 +11,7 @@ function Home() {
 
 	return (
 		<div>
-			<RootLevelNav />
+			<IndexNav />
 		</div>
 	);
 }
