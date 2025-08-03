@@ -1,8 +1,14 @@
 import React, { createContext, useContext, useState } from "react";
 
+export interface SidebarSlot {
+	header?: React.ReactNode;
+	content?: React.ReactNode;
+	footer?: React.ReactNode;
+}
+
 const SidebarSlotContext = createContext<{
-	sidebar: React.ReactNode;
-	setSidebar: (component: React.ReactNode) => void;
+	sidebar: SidebarSlot;
+	setSidebar: (slot: SidebarSlot) => void;
 } | null>(null);
 
 export function SidebarSlotProvider({
@@ -10,8 +16,7 @@ export function SidebarSlotProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [sidebar, setSidebar] = useState<React.ReactNode>(null);
-
+	const [sidebar, setSidebar] = useState<SidebarSlot>({});
 	return (
 		<SidebarSlotContext.Provider value={{ sidebar, setSidebar }}>
 			{children}

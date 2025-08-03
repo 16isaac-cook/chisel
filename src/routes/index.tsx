@@ -1,14 +1,21 @@
 import { ThemeToggle } from "@/shared/components/theme-toggle";
 import useSidebar from "@/shared/hooks/use-sidebar";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
 	component: Home,
 });
 
 function Home() {
-	useSidebar(<div>test</div>);
+	useSidebar({
+		header: <div className="font-bold p-4">Home Header</div>,
+		content: (
+			<ul className="p-4 space-y-2">
+				<li>Dashboard</li>
+				<li>Settings</li>
+			</ul>
+		),
+	});
 
 	return (
 		<div>

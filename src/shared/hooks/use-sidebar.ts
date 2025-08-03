@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useSidebarSlot } from "../context/sidebar-context";
+import { useEffect } from "react";
+import { SidebarSlot, useSidebarSlot } from "../context/sidebar-context";
 
-export default function useSidebar(sidebar: React.ReactNode) {
+export default function useSidebar(sidebar: SidebarSlot) {
 	const setSidebar = useSidebarSlot();
 
 	useEffect(() => {
