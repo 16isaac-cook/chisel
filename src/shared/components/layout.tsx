@@ -24,8 +24,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<SidebarProvider defaultOpen={defaultOpen}>
 			<SidebarSlotProvider>
-				<div className="flex flex-col h-screen">
-					<header>test</header>
+				<div className="flex flex-col h-screen w-full">
+					<header className="h-16 flex-shrink-0 border-b px-4 flex items-center">
+						test
+					</header>
 					<LayoutBody>{children}</LayoutBody>
 				</div>
 			</SidebarSlotProvider>
