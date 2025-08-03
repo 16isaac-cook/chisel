@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import { settingsStore } from "@/stores/settings-store";
+import { useStore } from "@tanstack/react-store";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 export interface SidebarSlot {
 	header?: React.ReactNode;
@@ -6,20 +8,50 @@ export interface SidebarSlot {
 	footer?: React.ReactNode;
 }
 
-const SidebarSlotContext = createContext<{
+interface SidebarContextType {
 	sidebar: SidebarSlot;
 	setSidebar: (slot: SidebarSlot) => void;
-} | null>(null);
+	open: boolean;
+	toggleOpen: () => void;
+	setOpen: (open: boolean) => void;
+}
+
+const SidebarSlotContext = createContext<SidebarContextType | null>(null);
 
 export function SidebarSlotProvider({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const settings = useStore(settingsStore);
+
+	const [isOpen, setIsOpen] = useState(
+		settings.uiState.sidebar === "expanded"
+	);
 	const [sidebar, setSidebar] = useState<SidebarSlot>({});
 
+	useEffect(() => {
+		settingsStore.setState((prev) => ({
+			...prev,
+			uiState: {
+				...prev.uiState,
+				sidebar: isOpen ? "expanded" : "collapsed",
+			},
+		}));
+	}, [isOpen]);
+
+	const toggleOpen = () => setIsOpen((open) => !open);
+
 	return (
-		<SidebarSlotContext.Provider value={{ sidebar, setSidebar }}>
+		<SidebarSlotContext.Provider
+			value={{
+				sidebar,
+				setSidebar,
+				open: isOpen,
+				toggleOpen,
+				setOpen: setIsOpen,
+			}}
+		>
 			{children}
 		</SidebarSlotContext.Provider>
 	);
@@ -32,6 +64,17 @@ export function useSidebarSlot() {
 			"useSidebarSlot must be used within SidebarSlotProvider"
 		);
 	return ctx.setSidebar;
+}
+
+export function useSidebarOpen() {
+	const ctx = useContext(SidebarSlotContext);
+	if (!ctx)
+		throw new Error("useSidebarOpen must be used within SidebarProvider");
+	return {
+		isOpen: ctx.open,
+		toggleOpen: ctx.toggleOpen,
+		setOpen: ctx.setOpen,
+	};
 }
 
 export function useCurrentSidebar() {

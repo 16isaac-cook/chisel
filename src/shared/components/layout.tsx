@@ -1,9 +1,14 @@
-import React from "react";
-import { SidebarProvider, SidebarTrigger } from "./ui/sidebar";
+import React, { ReactNode, useEffect, useState } from "react";
+import {
+	SidebarProvider as ShadcnSidebarProvider,
+	SidebarTrigger,
+	useSidebar,
+} from "./ui/sidebar";
 import {
 	isSidebarSlotEmpty,
 	SidebarSlotProvider,
 	useCurrentSidebar,
+	useSidebarOpen,
 } from "../context/sidebar-context";
 import { useStore } from "@tanstack/react-store";
 import { settingsStore } from "@/stores/settings-store";
@@ -30,18 +35,28 @@ function LayoutBody({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-	const settings = useStore(settingsStore);
-	const defaultOpen = settings.uiState.sidebar !== "collapsed";
+function SidebarController({ children }: { children: ReactNode }) {
+	const { isOpen, setOpen } = useSidebarOpen();
 
 	return (
-		<SidebarProvider defaultOpen={defaultOpen}>
-			<SidebarSlotProvider>
+		<ShadcnSidebarProvider
+			open={isOpen}
+			onOpenChange={(open) => setOpen(open)}
+		>
+			{children}
+		</ShadcnSidebarProvider>
+	);
+}
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+	return (
+		<SidebarSlotProvider>
+			<SidebarController>
 				<div className="flex flex-col h-screen w-full">
 					<AppHeader />
 					<LayoutBody>{children}</LayoutBody>
 				</div>
-			</SidebarSlotProvider>
-		</SidebarProvider>
+			</SidebarController>
+		</SidebarSlotProvider>
 	);
 }

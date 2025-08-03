@@ -40,17 +40,21 @@ function getSidebarStateFromCookie(): "collapsed" | "expanded" {
 }
 
 export async function loadSettings() {
+	console.log("loading");
 	let loadedSettings: Partial<AppSettings> = {};
 
 	if (isTauri && lazyStore) {
-		const currentVal = await lazyStore.get("currentVal");
+		const currentVal = (await lazyStore.get("currentVal")) as AppSettings;
 
 		if (currentVal && typeof currentVal === "object") {
-			loadedSettings = Object.fromEntries(
-				Object.entries(currentVal).filter(
-					([key]) => key in defaultSettings
-				)
-			) as Partial<AppSettings>;
+			loadedSettings = {
+				...defaultSettings,
+				...currentVal,
+				uiState: {
+					...defaultSettings.uiState,
+					...(currentVal.uiState ?? {}),
+				},
+			};
 		}
 	} else {
 		for (const key of Object.keys(defaultSettings)) {
@@ -59,6 +63,14 @@ export async function loadSettings() {
 				loadedSettings[key as keyof AppSettings] = JSON.parse(value);
 			}
 		}
+		loadedSettings = {
+			...defaultSettings,
+			...loadedSettings,
+			uiState: {
+				...defaultSettings.uiState,
+				...(loadedSettings.uiState ?? {}),
+			},
+		};
 	}
 
 	if (
@@ -72,10 +84,7 @@ export async function loadSettings() {
 		};
 	}
 
-	settingsStore.setState((prev) => ({
-		...prev,
-		...loadedSettings,
-	}));
+	settingsStore.setState(() => loadedSettings as AppSettings);
 }
 
 settingsStore.subscribe((settings) => {
@@ -83,12 +92,12 @@ settingsStore.subscribe((settings) => {
 	document.cookie = `sidebar-state=${sidebarState}; path=/; max-age=31536000; SameSite=Lax`;
 
 	if (isTauri && lazyStore) {
-		lazyStore.set("currentVal", settings);
+		lazyStore.set("currentVal", settings.currentVal);
 		lazyStore.save().catch((e) => {
 			console.error("failed to save settings", e);
 		});
 	} else {
-		for (const [key, value] of Object.entries(settings)) {
+		for (const [key, value] of Object.entries(settings.currentVal)) {
 			localStorage.setItem(key, JSON.stringify(value));
 		}
 	}

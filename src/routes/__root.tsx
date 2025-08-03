@@ -1,16 +1,16 @@
 /// <reference types="vite/client" />
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
 	Outlet,
 	createRootRoute,
 	HeadContent,
 	Scripts,
-	useMatches,
 } from "@tanstack/react-router";
 import appCss from "@/shared/styles/globals.css?url";
 import { loadSettings } from "@/stores/settings-store";
 import { ThemeProvider } from "@/shared/context/theme-context";
 import Layout from "@/shared/components/layout";
+import { ClientApp } from "@/shared/components/app";
 
 export const Route = createRootRoute({
 	head: () => ({
@@ -37,19 +37,9 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-	const matches = useMatches();
-	useEffect(() => {
-		console.log(matches);
-		loadSettings();
-	}, []);
-
 	return (
 		<RootDocument>
-			<ThemeProvider>
-				<Layout>
-					<Outlet />
-				</Layout>
-			</ThemeProvider>
+			<ClientApp />
 		</RootDocument>
 	);
 }
