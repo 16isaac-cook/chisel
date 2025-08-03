@@ -1,0 +1,4 @@
+{
+	"findUnusedExports.detectCircularImports": true,
+	"files.associations": { "css": "tailwindcss" }
+}

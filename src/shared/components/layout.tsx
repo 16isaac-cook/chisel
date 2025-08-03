@@ -2,13 +2,11 @@ import React, { ReactNode, useEffect, useState } from "react";
 import {
 	SidebarProvider as ShadcnSidebarProvider,
 	SidebarTrigger,
-	useSidebar,
 } from "./ui/sidebar";
 import {
 	isSidebarSlotEmpty,
 	SidebarSlotProvider,
 	useCurrentSidebar,
-	useSidebarOpen,
 } from "../context/sidebar-context";
 import { useStore } from "@tanstack/react-store";
 import { settingsStore } from "@/stores/settings-store";

@@ -12,11 +12,11 @@ export function ClientApp() {
 			.then(() => setLoaded(true))
 			.catch((e) => {
 				console.error("Failed to load settings", e);
-				setLoaded(true); // avoid blocking UI on error
+				setLoaded(true);
 			});
 	}, []);
 
-	if (!loaded) return null; // or a spinner/loading UI
+	if (!loaded) return null;
 
 	return (
 		<ThemeProvider>
