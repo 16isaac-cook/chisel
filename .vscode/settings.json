@@ -4,5 +4,6 @@
 	"[css]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"tailwindCSS.classFunctions": ["cva", "cn"]
+	"tailwindCSS.classFunctions": ["cva", "cn"],
+	"cSpell.words": ["remixicon"]
 }
