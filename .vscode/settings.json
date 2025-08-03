@@ -5,5 +5,5 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"tailwindCSS.classFunctions": ["cva", "cn"],
-	"cSpell.words": ["cmdk", "embla", "remixicon"]
+	"cSpell.words": ["cmdk", "embla", "remixicon", "remixicons", "unknow"]
 }

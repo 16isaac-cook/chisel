@@ -26,7 +26,7 @@ const buttonVariants = cva(
 				lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
 				icon: "size-9",
 				category:
-					"rounded-md px-6 py-3 has-[>svg]:p-4 flex flex-col text-2xl [&>svg]:size-12!",
+					"rounded-md px-5 py-4 flex flex-col text-2xl [&>span]:size-12 not-[has-[>span]]:[&>svg]:size-12",
 			},
 		},
 		defaultVariants: {

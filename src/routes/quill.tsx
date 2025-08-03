@@ -1,4 +1,4 @@
-import { RiQuillPenFill } from "@remixicon/react";
+import { ThemedRemixIcon } from "@/shared/components/themed-remixicon";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/quill")({
@@ -7,7 +7,7 @@ export const Route = createFileRoute("/quill")({
 		meta: [
 			{
 				title: "Quill",
-				icon: <RiQuillPenFill />,
+				icon: <ThemedRemixIcon icon="QuillPen" />,
 			},
 		],
 	}),

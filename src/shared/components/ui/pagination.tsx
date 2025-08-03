@@ -1,12 +1,11 @@
 import * as React from "react";
-import {
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	MoreHorizontalIcon,
-} from "lucide-react";
-
 import { cn } from "@/shared/lib/utils";
 import { Button, buttonVariants } from "@/shared/components/ui/button";
+import {
+	RiArrowDropLeftLine,
+	RiArrowDropRightLine,
+	RiMoreFill,
+} from "@remixicon/react";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
 	return (
@@ -76,7 +75,7 @@ function PaginationPrevious({
 			className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
 			{...props}
 		>
-			<ChevronLeftIcon />
+			<RiArrowDropLeftLine />
 			<span className="hidden sm:block">Previous</span>
 		</PaginationLink>
 	);
@@ -94,7 +93,7 @@ function PaginationNext({
 			{...props}
 		>
 			<span className="hidden sm:block">Next</span>
-			<ChevronRightIcon />
+			<RiArrowDropRightLine />
 		</PaginationLink>
 	);
 }
@@ -110,7 +109,7 @@ function PaginationEllipsis({
 			className={cn("flex size-9 items-center justify-center", className)}
 			{...props}
 		>
-			<MoreHorizontalIcon className="size-4" />
+			<RiMoreFill className="size-4" />
 			<span className="sr-only">More pages</span>
 		</span>
 	);

@@ -1,9 +1,6 @@
 "use client";
-
 import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
-import { SearchIcon } from "lucide-react";
-
 import { cn } from "@/shared/lib/utils";
 import {
 	Dialog,
@@ -12,6 +9,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/shared/components/ui/dialog";
+import { RiSearchLine } from "@remixicon/react";
 
 function Command({
 	className,
@@ -69,7 +67,7 @@ function CommandInput({
 			data-slot="command-input-wrapper"
 			className="flex h-9 items-center gap-2 border-b px-3"
 		>
-			<SearchIcon className="size-4 shrink-0 opacity-50" />
+			<RiSearchLine className="size-4 shrink-0 opacity-50" />
 			<CommandPrimitive.Input
 				data-slot="command-input"
 				className={cn(

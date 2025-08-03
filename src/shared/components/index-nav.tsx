@@ -1,6 +1,6 @@
 import { Link, useLoaderData, useRouter } from "@tanstack/react-router";
 import { Button } from "./ui/button";
-import { X } from "lucide-react";
+import { ThemedRemixIcon } from "./themed-remixicon";
 
 export function IndexNav() {
 	const router = useRouter();
@@ -26,7 +26,7 @@ export function IndexNav() {
 				>
 					<Link to={route.id}>
 						{route.options?.head?.().meta?.find((m: any) => m.icon)
-							?.icon || <X />}
+							?.icon || <ThemedRemixIcon icon="FileUnknow" />}
 						{route.options?.head?.().meta?.find((m: any) => m.title)
 							?.title || route.id}
 					</Link>

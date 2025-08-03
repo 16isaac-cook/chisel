@@ -1,4 +1,3 @@
-import { Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import {
 	Dialog,
@@ -8,13 +7,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "./ui/dialog";
+import { ThemedRemixIcon } from "./themed-remixicon";
 
 export function AppSettings() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
-					<Settings />
+					<ThemedRemixIcon icon="Settings3" />
 				</Button>
 			</DialogTrigger>
 			<DialogContent>
