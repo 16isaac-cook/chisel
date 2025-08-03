@@ -1,4 +1,8 @@
 {
 	"findUnusedExports.detectCircularImports": true,
-	"files.associations": { "css": "tailwindcss" }
+	"files.associations": { "css": "tailwindcss" },
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"tailwindCSS.classFunctions": ["cva", "cn"]
 }
