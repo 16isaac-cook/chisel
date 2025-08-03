@@ -17,6 +17,7 @@ export function SidebarSlotProvider({
 	children: React.ReactNode;
 }) {
 	const [sidebar, setSidebar] = useState<SidebarSlot>({});
+
 	return (
 		<SidebarSlotContext.Provider value={{ sidebar, setSidebar }}>
 			{children}
@@ -40,4 +41,8 @@ export function useCurrentSidebar() {
 			"useCurrentSidebar must be used within SidebarSlotProvider"
 		);
 	return ctx.sidebar;
+}
+
+export function isSidebarSlotEmpty(slot: SidebarSlot): boolean {
+	return !slot.header && !slot.content && !slot.footer;
 }

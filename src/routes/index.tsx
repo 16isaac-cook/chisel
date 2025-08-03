@@ -1,6 +1,6 @@
 import { ThemeToggle } from "@/shared/components/theme-toggle";
 import useSidebar from "@/shared/hooks/use-sidebar";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
 	component: Home,
@@ -20,6 +20,7 @@ function Home() {
 	return (
 		<div>
 			<ThemeToggle />
+			<Link to="/about">about</Link>
 		</div>
 	);
 }

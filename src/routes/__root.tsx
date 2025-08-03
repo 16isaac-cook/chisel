@@ -5,6 +5,7 @@ import {
 	createRootRoute,
 	HeadContent,
 	Scripts,
+	useMatches,
 } from "@tanstack/react-router";
 import appCss from "@/shared/styles/globals.css?url";
 import { loadSettings } from "@/stores/settings-store";
@@ -22,7 +23,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "Home",
 			},
 		],
 		links: [
@@ -36,7 +37,9 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+	const matches = useMatches();
 	useEffect(() => {
+		console.log(matches);
 		loadSettings();
 	}, []);
 

@@ -5,16 +5,23 @@ import {
 	SidebarFooter,
 } from "./ui/sidebar";
 
-import { useCurrentSidebar } from "@/shared/context/sidebar-context";
+import {
+	isSidebarSlotEmpty,
+	useCurrentSidebar,
+} from "@/shared/context/sidebar-context";
 
 export function AppSidebar() {
-	const { header, content, footer } = useCurrentSidebar();
+	const slot = useCurrentSidebar();
+
+	if (isSidebarSlotEmpty(slot)) {
+		return null;
+	}
 
 	return (
 		<Sidebar className="top-16" collapsible="icon">
-			<SidebarHeader>{header}</SidebarHeader>
-			<SidebarContent>{content}</SidebarContent>
-			<SidebarFooter>{footer}</SidebarFooter>
+			<SidebarHeader>{slot.header}</SidebarHeader>
+			<SidebarContent>{slot.content}</SidebarContent>
+			<SidebarFooter>{slot.footer}</SidebarFooter>
 		</Sidebar>
 	);
 }
