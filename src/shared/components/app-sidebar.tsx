@@ -3,7 +3,6 @@ import {
 	SidebarHeader,
 	SidebarContent,
 	SidebarFooter,
-	useSidebar,
 } from "./ui/sidebar";
 
 import {
@@ -14,11 +13,10 @@ import {
 export function AppSidebar() {
 	const slot = useCurrentSidebar();
 
+	const collapsible = isSidebarSlotEmpty(slot) ? "offcanvas" : "icon";
+
 	return (
-		<Sidebar
-			className="top-16"
-			collapsible={isSidebarSlotEmpty(slot) ? "offcanvas" : "icon"}
-		>
+		<Sidebar className="top-16" collapsible={collapsible}>
 			<SidebarHeader>{slot.header}</SidebarHeader>
 			<SidebarContent>{slot.content}</SidebarContent>
 			<SidebarFooter>{slot.footer}</SidebarFooter>

@@ -36,13 +36,38 @@ function LayoutBody({ children }: { children: React.ReactNode }) {
 }
 
 function SidebarController({ children }: { children: ReactNode }) {
-	const { isOpen, setOpen } = useSidebarOpen();
+	const slot = useCurrentSidebar();
+	const collapsible = isSidebarSlotEmpty(slot) ? "offcanvas" : "icon";
+
+	const settings = useStore(settingsStore);
+	const persistentOpen = settings.uiState.sidebar !== "collapsed";
+
+	const [tempOpen, setTempOpen] = useState(true);
+
+	const isOpen = collapsible === "offcanvas" ? tempOpen : persistentOpen;
+
+	useEffect(() => {
+		if (collapsible === "offcanvas") {
+			setTempOpen(false);
+		}
+	}, [collapsible]);
+
+	function onOpenChange(open: boolean) {
+		if (collapsible === "icon") {
+			settingsStore.setState((prev) => ({
+				...prev,
+				uiState: {
+					...prev.uiState,
+					sidebar: open ? "expanded" : "collapsed",
+				},
+			}));
+		} else {
+			setTempOpen(open);
+		}
+	}
 
 	return (
-		<ShadcnSidebarProvider
-			open={isOpen}
-			onOpenChange={(open) => setOpen(open)}
-		>
+		<ShadcnSidebarProvider open={isOpen} onOpenChange={onOpenChange}>
 			{children}
 		</ShadcnSidebarProvider>
 	);
