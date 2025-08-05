@@ -2,11 +2,15 @@ import * as RemixIcons from "@remixicon/react";
 import * as LucideIcons from "lucide-react";
 import { IconLibrary, RemixIconBaseName } from "../types/types";
 import { cn } from "../lib/utils";
+import React from "react";
 
 type ThemedRemixIconProps = {
 	icon: RemixIconBaseName | keyof typeof LucideIcons;
 	className?: string;
 	library?: IconLibrary;
+	fill?: boolean;
+	dark?: React.ReactNode;
+	light?: React.ReactNode;
 };
 
 export function IconSwapWrapper({
@@ -30,7 +34,29 @@ export function ThemedRemixIcon({
 	icon,
 	className = "",
 	library = "remix",
+	fill = true,
+	dark,
+	light,
 }: ThemedRemixIconProps) {
+	const lightClasses = cn(
+		"absolute transition-all dark:opacity-0 dark:scale-0 dark:-rotate-90 size-full!"
+	);
+	const darkClasses = cn(
+		"absolute opacity-0 scale-0 rotate-90 transition-all dark:opacity-100 dark:scale-100 dark:rotate-0 size-full!",
+		library === "lucide" ? (fill ? "fill-current" : "fill-none") : ""
+	);
+
+	const LineIcon = (RemixIcons as any)[`Ri${icon}Line`];
+	const FillIcon = (RemixIcons as any)[`Ri${icon}Fill`];
+
+	if (library === "remix" && (!LineIcon || !FillIcon)) {
+		console.warn(`Could not find RemixIcon for ${icon}`);
+		return null;
+	}
+
+	let lightIcon = <LineIcon aria-hidden="true" className={lightClasses} />;
+	let darkIcon = <FillIcon aria-hidden="true" className={darkClasses} />;
+
 	if (library === "lucide") {
 		const LucideIcon = (LucideIcons as any)[icon];
 		if (!LucideIcon) {
@@ -38,40 +64,30 @@ export function ThemedRemixIcon({
 			return null;
 		}
 
-		return (
-			<IconSwapWrapper className={className}>
-				<LucideIcon
-					className={cn(
-						"absolute size-full text-foreground transition-all opacity-100 scale-100 rotate-0 dark:opacity-0 dark:scale-0 dark:-rotate-90 fill-none"
-					)}
-				/>
-				<LucideIcon
-					className={cn(
-						"absolute size-full text-foreground transition-all opacity-0 scale-0 rotate-90 dark:opacity-100 dark:scale-100 dark:rotate-0 fill-current"
-					)}
-				/>
-			</IconSwapWrapper>
-		);
+		lightIcon = <LucideIcon className={lightClasses} />;
+		darkIcon = <LucideIcon className={darkClasses} />;
 	}
 
-	const LineIcon = (RemixIcons as any)[`Ri${icon}Line`];
-	const FillIcon = (RemixIcons as any)[`Ri${icon}Fill`];
+	if (light) {
+		if (React.isValidElement(light)) {
+			lightIcon = React.cloneElement(light as React.ReactElement<any>, {
+				className: cn((light.props as any)?.className, lightClasses),
+			});
+		}
+	}
 
-	if (!LineIcon || !FillIcon) {
-		console.warn(`Could not find RemixIcon for ${icon}`);
-		return null;
+	if (dark) {
+		if (React.isValidElement(dark)) {
+			darkIcon = React.cloneElement(dark as React.ReactElement<any>, {
+				className: cn((dark.props as any)?.className, darkClasses),
+			});
+		}
 	}
 
 	return (
 		<IconSwapWrapper className={className}>
-			<LineIcon
-				aria-hidden="true"
-				className="absolute transition-all dark:opacity-0 dark:scale-0 dark:-rotate-90 size-full!"
-			/>
-			<FillIcon
-				aria-hidden="true"
-				className="absolute opacity-0 scale-0 rotate-90 transition-all dark:opacity-100 dark:scale-100 dark:rotate-0 size-full!"
-			/>
+			{lightIcon}
+			{darkIcon}
 		</IconSwapWrapper>
 	);
 }

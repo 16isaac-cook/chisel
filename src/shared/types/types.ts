@@ -8,3 +8,4 @@ type ExtractBaseName<T extends string> =
 	T extends `Ri${infer Name}${LineOrFill}` ? Name : never;
 
 export type RemixIconBaseName = ExtractBaseName<RemixIconKey>;
+export type IconLibrary = "remix" | "lucide";
