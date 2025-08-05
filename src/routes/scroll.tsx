@@ -1,18 +1,18 @@
 import { ThemedRemixIcon } from "@/shared/components/themed-remixicon";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/quill")({
+export const Route = createFileRoute("/scroll")({
 	component: RouteComponent,
 	head: () => ({
 		meta: [
 			{
-				title: "Quill",
-				icon: <ThemedRemixIcon icon="QuillPen" />,
+				title: "Scroll",
+				icon: <ThemedRemixIcon icon="FilePaper2" />,
 			},
 		],
 	}),
 });
 
 function RouteComponent() {
-	return <div>Quill will be a tool for writing settings</div>;
+	return <div>Scroll will be a note-taking tool for players</div>;
 }

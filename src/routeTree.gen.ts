@@ -9,12 +9,66 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VaultRouteImport } from './routes/vault'
+import { Route as SeedRouteImport } from './routes/seed'
+import { Route as ScrollRouteImport } from './routes/scroll'
 import { Route as QuillRouteImport } from './routes/quill'
+import { Route as MaskRouteImport } from './routes/mask'
+import { Route as HammerRouteImport } from './routes/hammer'
+import { Route as EchoRouteImport } from './routes/echo'
+import { Route as BestiaryRouteImport } from './routes/bestiary'
+import { Route as AtlasRouteImport } from './routes/atlas'
+import { Route as ArchiveRouteImport } from './routes/archive'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VaultRoute = VaultRouteImport.update({
+  id: '/vault',
+  path: '/vault',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeedRoute = SeedRouteImport.update({
+  id: '/seed',
+  path: '/seed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScrollRoute = ScrollRouteImport.update({
+  id: '/scroll',
+  path: '/scroll',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuillRoute = QuillRouteImport.update({
   id: '/quill',
   path: '/quill',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaskRoute = MaskRouteImport.update({
+  id: '/mask',
+  path: '/mask',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HammerRoute = HammerRouteImport.update({
+  id: '/hammer',
+  path: '/hammer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EchoRoute = EchoRouteImport.update({
+  id: '/echo',
+  path: '/echo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestiaryRoute = BestiaryRouteImport.update({
+  id: '/bestiary',
+  path: '/bestiary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtlasRoute = AtlasRouteImport.update({
+  id: '/atlas',
+  path: '/atlas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveRoute = ArchiveRouteImport.update({
+  id: '/archive',
+  path: '/archive',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +79,170 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/archive': typeof ArchiveRoute
+  '/atlas': typeof AtlasRoute
+  '/bestiary': typeof BestiaryRoute
+  '/echo': typeof EchoRoute
+  '/hammer': typeof HammerRoute
+  '/mask': typeof MaskRoute
   '/quill': typeof QuillRoute
+  '/scroll': typeof ScrollRoute
+  '/seed': typeof SeedRoute
+  '/vault': typeof VaultRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/archive': typeof ArchiveRoute
+  '/atlas': typeof AtlasRoute
+  '/bestiary': typeof BestiaryRoute
+  '/echo': typeof EchoRoute
+  '/hammer': typeof HammerRoute
+  '/mask': typeof MaskRoute
   '/quill': typeof QuillRoute
+  '/scroll': typeof ScrollRoute
+  '/seed': typeof SeedRoute
+  '/vault': typeof VaultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/archive': typeof ArchiveRoute
+  '/atlas': typeof AtlasRoute
+  '/bestiary': typeof BestiaryRoute
+  '/echo': typeof EchoRoute
+  '/hammer': typeof HammerRoute
+  '/mask': typeof MaskRoute
   '/quill': typeof QuillRoute
+  '/scroll': typeof ScrollRoute
+  '/seed': typeof SeedRoute
+  '/vault': typeof VaultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/quill'
+  fullPaths:
+    | '/'
+    | '/archive'
+    | '/atlas'
+    | '/bestiary'
+    | '/echo'
+    | '/hammer'
+    | '/mask'
+    | '/quill'
+    | '/scroll'
+    | '/seed'
+    | '/vault'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/quill'
-  id: '__root__' | '/' | '/quill'
+  to:
+    | '/'
+    | '/archive'
+    | '/atlas'
+    | '/bestiary'
+    | '/echo'
+    | '/hammer'
+    | '/mask'
+    | '/quill'
+    | '/scroll'
+    | '/seed'
+    | '/vault'
+  id:
+    | '__root__'
+    | '/'
+    | '/archive'
+    | '/atlas'
+    | '/bestiary'
+    | '/echo'
+    | '/hammer'
+    | '/mask'
+    | '/quill'
+    | '/scroll'
+    | '/seed'
+    | '/vault'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArchiveRoute: typeof ArchiveRoute
+  AtlasRoute: typeof AtlasRoute
+  BestiaryRoute: typeof BestiaryRoute
+  EchoRoute: typeof EchoRoute
+  HammerRoute: typeof HammerRoute
+  MaskRoute: typeof MaskRoute
   QuillRoute: typeof QuillRoute
+  ScrollRoute: typeof ScrollRoute
+  SeedRoute: typeof SeedRoute
+  VaultRoute: typeof VaultRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vault': {
+      id: '/vault'
+      path: '/vault'
+      fullPath: '/vault'
+      preLoaderRoute: typeof VaultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seed': {
+      id: '/seed'
+      path: '/seed'
+      fullPath: '/seed'
+      preLoaderRoute: typeof SeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scroll': {
+      id: '/scroll'
+      path: '/scroll'
+      fullPath: '/scroll'
+      preLoaderRoute: typeof ScrollRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quill': {
       id: '/quill'
       path: '/quill'
       fullPath: '/quill'
       preLoaderRoute: typeof QuillRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mask': {
+      id: '/mask'
+      path: '/mask'
+      fullPath: '/mask'
+      preLoaderRoute: typeof MaskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hammer': {
+      id: '/hammer'
+      path: '/hammer'
+      fullPath: '/hammer'
+      preLoaderRoute: typeof HammerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/echo': {
+      id: '/echo'
+      path: '/echo'
+      fullPath: '/echo'
+      preLoaderRoute: typeof EchoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bestiary': {
+      id: '/bestiary'
+      path: '/bestiary'
+      fullPath: '/bestiary'
+      preLoaderRoute: typeof BestiaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atlas': {
+      id: '/atlas'
+      path: '/atlas'
+      fullPath: '/atlas'
+      preLoaderRoute: typeof AtlasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive': {
+      id: '/archive'
+      path: '/archive'
+      fullPath: '/archive'
+      preLoaderRoute: typeof ArchiveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +257,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArchiveRoute: ArchiveRoute,
+  AtlasRoute: AtlasRoute,
+  BestiaryRoute: BestiaryRoute,
+  EchoRoute: EchoRoute,
+  HammerRoute: HammerRoute,
+  MaskRoute: MaskRoute,
   QuillRoute: QuillRoute,
+  ScrollRoute: ScrollRoute,
+  SeedRoute: SeedRoute,
+  VaultRoute: VaultRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
