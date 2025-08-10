@@ -13,10 +13,11 @@ import {
 export function AppSidebar() {
 	const slot = useCurrentSidebar();
 
-	const collapsible = isSidebarSlotEmpty(slot) ? "offcanvas" : "icon";
+	// noinspection SpellCheckingInspection
+    const collapsible = isSidebarSlotEmpty(slot) ? "offcanvas" : "icon";
 
 	return (
-		<Sidebar className="top-16" collapsible={collapsible}>
+		<Sidebar className="fixed top-16 h-[calc(100vh-4rem)]" collapsible={collapsible}>
 			<SidebarHeader>{slot.header}</SidebarHeader>
 			<SidebarContent>{slot.content}</SidebarContent>
 			<SidebarFooter>{slot.footer}</SidebarFooter>
