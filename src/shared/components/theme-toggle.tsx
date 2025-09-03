@@ -13,10 +13,32 @@ import {
     RiMoonFill,
     RiSunLine,
 } from "@remixicon/react";
+import { useEffect } from "react";
+
+const THEME_KEYBOARD_SHORTCUT = "t";
 
 export function ThemeToggle() {
     const { settings, setTheme } = useSettingsStore();
     const theme = settings.theme;
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (
+                event.key === THEME_KEYBOARD_SHORTCUT &&
+                (event.metaKey || event.ctrlKey)
+            ) {
+                event.preventDefault();
+                if (theme === "light") {
+                    setTheme("dark");
+                } else {
+                    setTheme("light");
+                }
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [theme]);
 
     return (
         <DropdownMenu>
