@@ -1,14 +1,27 @@
+import { useSettingsStore } from "@context/settings-context";
 import { useEffect } from "react";
-import { SidebarSlot, useSidebarSlot } from "../context/sidebar-context";
+import { type SidebarSlot, useSidebarSlot } from "@context/sidebar-context";
 
 export default function useSidebar(sidebar: SidebarSlot | null) {
-	const setSidebar = useSidebarSlot();
+    const setSidebar = useSidebarSlot();
 
-	useEffect(() => {
-		setSidebar(sidebar ?? {});
+    useEffect(() => {
+        setSidebar(sidebar ?? {});
 
-		return () => {
-			setSidebar({});
-		};
-	}, [setSidebar]);
+        return () => {
+            setSidebar({});
+        };
+    }, [setSidebar]);
+}
+
+export function useSidebarOpen() {
+    const { settings, toggleSidebar, setSidebar } = useSettingsStore();
+
+    const isOpen = settings.uiState.sidebar === "expanded";
+
+    return {
+        isOpen,
+        toggleOpen: toggleSidebar,
+        setOpen: (open: boolean) => setSidebar(open),
+    };
 }

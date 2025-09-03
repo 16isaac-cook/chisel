@@ -1,19 +1,19 @@
-import { IndexNav } from "@/shared/components/index-nav";
-import useSidebar from "@/shared/hooks/use-sidebar";
+import { IndexNav } from "@components/index-nav";
+import useSidebar from "@hooks/use-sidebar";
 import { createFileRoute } from "@tanstack/react-router";
-import { Checkbox } from "@/shared/components/ui/checkbox";
+import { Checkbox } from "@components/ui/checkbox";
 
 export const Route = createFileRoute("/")({
-	component: Home,
+    component: Home,
 });
 
 function Home() {
-	useSidebar(null);
+    useSidebar(null);
 
-	return (
-		<div>
-			<IndexNav />
-			<Checkbox />
-		</div>
-	);
+    return (
+        <div>
+            <IndexNav />
+            <Checkbox />
+        </div>
+    );
 }

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ThemedRemixIcon } from "@/shared/components/themed-remixicon.tsx";
+import { ThemedRemixIcon } from "@components/themed-remixicon.tsx";
 
 export const Route = createFileRoute("/quill/overview")({
     component: RouteComponent,

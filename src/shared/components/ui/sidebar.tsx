@@ -1,26 +1,26 @@
-"use client";
+import { useSidebarOpen } from "@context/sidebar-context";
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, VariantProps } from "class-variance-authority";
-import { useIsMobile } from "@/shared/hooks/use-mobile";
-import { cn } from "@/shared/lib/utils";
-import { Button } from "@/shared/components/ui/button";
-import { Input } from "@/shared/components/ui/input";
-import { Separator } from "@/shared/components/ui/separator";
+import { cva, type VariantProps } from "class-variance-authority";
+import { useIsMobile } from "@hooks/use-mobile";
+import { cn } from "@lib/utils";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { Separator } from "@components/ui/separator";
 import {
     Sheet,
     SheetContent,
     SheetDescription,
     SheetHeader,
     SheetTitle,
-} from "@/shared/components/ui/sheet";
-import { Skeleton } from "@/shared/components/ui/skeleton";
+} from "@components/ui/sheet";
+import { Skeleton } from "@components/ui/skeleton";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from "@/shared/components/ui/tooltip";
+} from "@components/ui/tooltip";
 import { ThemedRemixIcon } from "../themed-remixicon";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
@@ -270,7 +270,7 @@ function SidebarTrigger({
     onClick,
     ...props
 }: React.ComponentProps<typeof Button>) {
-    const { toggleSidebar } = useSidebar();
+    const { toggleOpen } = useSidebarOpen();
 
     return (
         <Button
@@ -281,7 +281,7 @@ function SidebarTrigger({
             className={cn("size-7 mr-2", className)}
             onClick={(event) => {
                 onClick?.(event);
-                toggleSidebar();
+                toggleOpen();
             }}
             {...props}
         >

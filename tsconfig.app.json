@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "composite": true,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@components/*": [
+        "./src/shared/components/*"
+      ],
+      "@context/*": [
+        "./src/shared/context/*"
+      ],
+      "@hooks/*": [
+        "./src/shared/hooks/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@lib/*": [
+        "./src/shared/lib/*"
+      ],
+      "@styles/*": [
+        "./src/shared/styles/*"
+      ],
+      "@assets/*": [
+        "./src/shared/assets/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

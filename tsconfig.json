@@ -1,11 +1,42 @@
 {
-  "extends": "./tsconfig.base.json",
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "compilerOptions": {
-    "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@components/*": [
+        "./src/shared/components/*"
+      ],
+      "@context/*": [
+        "./src/shared/context/*"
+      ],
+      "@hooks/*": [
+        "./src/shared/hooks/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@lib/*": [
+        "./src/shared/lib/*"
+      ],
+      "@styles/*": [
+        "./src/shared/styles/*"
+      ],
+      "@assets/*": [
+        "./src/shared/assets/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
     }
-  },
-  "include": ["src/**/*"]
+  }
 }

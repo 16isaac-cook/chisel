@@ -1,12 +1,12 @@
-import { ThemedRemixIcon } from "@/shared/components/themed-remixicon";
+import { useQuill } from "@pages/quill/context/quill-context";
+import { ThemedRemixIcon } from "@components/themed-remixicon";
 import {
     createFileRoute,
     Link,
     Outlet,
     useMatchRoute,
-    useRouter,
 } from "@tanstack/react-router";
-import useSidebar from "@/shared/hooks/use-sidebar.ts";
+import useSidebar from "@hooks/use-sidebar.ts";
 import {
     SidebarGroup,
     SidebarGroupContent,
@@ -14,7 +14,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from "@/shared/components/ui/sidebar.tsx";
+} from "@components/ui/sidebar.tsx";
 
 export const Route = createFileRoute("/quill")({
     component: RouteComponent,
@@ -30,6 +30,7 @@ export const Route = createFileRoute("/quill")({
 
 function SidebarContent() {
     const match = useMatchRoute();
+    const { world } = useQuill();
 
     return (
         <>
@@ -91,6 +92,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/overview">
                                     <ThemedRemixIcon icon="Book2" />
@@ -108,6 +110,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/world-objects">
                                     <ThemedRemixIcon icon="Haze" />
@@ -125,6 +128,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/maps">
                                     <ThemedRemixIcon icon="Map" />
@@ -142,6 +146,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/history">
                                     <ThemedRemixIcon icon="Hourglass" />
@@ -159,6 +164,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/campaigns">
                                     <ThemedRemixIcon icon="Team" />
@@ -176,6 +182,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/writing-tools">
                                     <ThemedRemixIcon icon="PenNib" />
@@ -193,6 +200,7 @@ function SidebarContent() {
                                         fuzzy: true,
                                     })
                                 }
+                                disabled={!world}
                             >
                                 <Link to="/quill/files">
                                     <ThemedRemixIcon icon="Folder3" />
@@ -254,8 +262,6 @@ function RouteComponent() {
     useSidebar({
         content: <SidebarContent />,
     });
-
-    const router = useRouter();
 
     return <Outlet />;
 }

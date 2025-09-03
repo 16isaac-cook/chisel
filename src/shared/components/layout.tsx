@@ -1,85 +1,76 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import { useSidebarOpen } from "@hooks/use-sidebar";
+import { useTheme } from "@hooks/use-theme";
+import React, { type ReactNode, useEffect, useState } from "react";
 import {
-	SidebarProvider as ShadcnSidebarProvider,
-	SidebarTrigger,
+    SidebarProvider as ShadcnSidebarProvider,
+    SidebarTrigger,
 } from "./ui/sidebar";
 import {
-	isSidebarSlotEmpty,
-	SidebarSlotProvider,
-	useCurrentSidebar,
-} from "../context/sidebar-context";
-import { useStore } from "@tanstack/react-store";
-import { settingsStore } from "@/stores/settings-store";
+    isSidebarSlotEmpty,
+    useCurrentSidebar,
+} from "@context/sidebar-context";
 import { AppSidebar } from "./app-sidebar";
 import { AppHeader } from "./app-header";
 import { AppBreadcrumbs } from "./app-breadcrumbs";
 
 function LayoutBody({ children }: { children: React.ReactNode }) {
-	const sidebar = useCurrentSidebar();
-	const isEmpty = isSidebarSlotEmpty(sidebar);
+    const sidebar = useCurrentSidebar();
+    const isEmpty = isSidebarSlotEmpty(sidebar);
 
-	return (
-		<div className="flex flex-1 overflow-hidden">
-			<AppSidebar />
-			<main className="flex-1 overflow-auto p-4">
-				<div className="w-full flex flex-row items-center mb-2">
-					{!isEmpty && <SidebarTrigger />}
-					<AppBreadcrumbs />
-				</div>
+    return (
+        <div className="flex flex-1 overflow-hidden">
+            <AppSidebar />
+            <main className="flex-1 overflow-auto p-4">
+                <div className="w-full flex flex-row items-center mb-2">
+                    {!isEmpty && <SidebarTrigger />}
+                    <AppBreadcrumbs />
+                </div>
 
-				{children}
-			</main>
-		</div>
-	);
+                {children}
+            </main>
+        </div>
+    );
 }
 
 function SidebarController({ children }: { children: ReactNode }) {
-	const slot = useCurrentSidebar();
-	const collapsible = isSidebarSlotEmpty(slot) ? "offcanvas" : "icon";
+    const slot = useCurrentSidebar();
+    const collapsible = isSidebarSlotEmpty(slot) ? "offcanvas" : "icon";
 
-	const settings = useStore(settingsStore);
-	const persistentOpen = settings.uiState.sidebar !== "collapsed";
+    const { isOpen, setOpen } = useSidebarOpen();
 
-	const [tempOpen, setTempOpen] = useState(true);
+    const [tempOpen, setTempOpen] = useState(true);
 
-	const isOpen = collapsible === "offcanvas" ? tempOpen : persistentOpen;
+    const visible = collapsible === "offcanvas" ? tempOpen : isOpen;
 
-	useEffect(() => {
-		if (collapsible === "offcanvas") {
-			setTempOpen(false);
-		}
-	}, [collapsible]);
+    useEffect(() => {
+        if (collapsible === "offcanvas") {
+            setTempOpen(false);
+        }
+    }, [collapsible]);
 
-	function onOpenChange(open: boolean) {
-		if (collapsible === "icon") {
-			settingsStore.setState((prev) => ({
-				...prev,
-				uiState: {
-					...prev.uiState,
-					sidebar: open ? "expanded" : "collapsed",
-				},
-			}));
-		} else {
-			setTempOpen(open);
-		}
-	}
+    function onOpenChange(open: boolean) {
+        if (collapsible === "icon") {
+            setOpen(open);
+        } else {
+            setTempOpen(open);
+        }
+    }
 
-	return (
-		<ShadcnSidebarProvider open={isOpen} onOpenChange={onOpenChange}>
-			{children}
-		</ShadcnSidebarProvider>
-	);
+    return (
+        <ShadcnSidebarProvider open={visible} onOpenChange={onOpenChange}>
+            {children}
+        </ShadcnSidebarProvider>
+    );
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-	return (
-		<SidebarSlotProvider>
-			<SidebarController>
-				<div className="flex flex-col h-screen w-full">
-					<AppHeader />
-					<LayoutBody>{children}</LayoutBody>
-				</div>
-			</SidebarController>
-		</SidebarSlotProvider>
-	);
+    useTheme();
+    return (
+        <SidebarController>
+            <div className="flex flex-col h-screen w-full">
+                <AppHeader />
+                <LayoutBody>{children}</LayoutBody>
+            </div>
+        </SidebarController>
+    );
 }
