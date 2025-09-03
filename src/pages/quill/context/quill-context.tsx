@@ -1,22 +1,12 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
-type WorldId = string;
+export type WorldId = string;
 export type QuillContextType = {
     world: WorldId | null;
     setWorld: (world: WorldId) => void;
 } | null;
 
-const QuillContext = createContext<QuillContextType>(null);
-
-export function QuillProvider({ children }: { children: React.ReactNode }) {
-    const [world, setWorld] = useState<WorldId | null>(null);
-
-    return (
-        <QuillContext.Provider value={{ world, setWorld }}>
-            {children}
-        </QuillContext.Provider>
-    );
-}
+export const QuillContext = createContext<QuillContextType>(null);
 
 export function useQuill() {
     const ctx = useContext(QuillContext);
