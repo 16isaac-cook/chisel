@@ -20,6 +20,17 @@ import { Route as BestiaryRouteImport } from './routes/bestiary'
 import { Route as AtlasRouteImport } from './routes/atlas'
 import { Route as ArchiveRouteImport } from './routes/archive'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as QuillIndexRouteImport } from './routes/quill/index'
+import { Route as QuillWritingToolsRouteImport } from './routes/quill/writing-tools'
+import { Route as QuillWorldsRouteImport } from './routes/quill/worlds'
+import { Route as QuillWorldObjectsRouteImport } from './routes/quill/world-objects'
+import { Route as QuillSettingsRouteImport } from './routes/quill/settings'
+import { Route as QuillOverviewRouteImport } from './routes/quill/overview'
+import { Route as QuillMapsRouteImport } from './routes/quill/maps'
+import { Route as QuillHistoryRouteImport } from './routes/quill/history'
+import { Route as QuillHelpAndInfoRouteImport } from './routes/quill/help-and-info'
+import { Route as QuillFilesRouteImport } from './routes/quill/files'
+import { Route as QuillCampaignsRouteImport } from './routes/quill/campaigns'
 
 const VaultRoute = VaultRouteImport.update({
   id: '/vault',
@@ -76,6 +87,61 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuillIndexRoute = QuillIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillWritingToolsRoute = QuillWritingToolsRouteImport.update({
+  id: '/writing-tools',
+  path: '/writing-tools',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillWorldsRoute = QuillWorldsRouteImport.update({
+  id: '/worlds',
+  path: '/worlds',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillWorldObjectsRoute = QuillWorldObjectsRouteImport.update({
+  id: '/world-objects',
+  path: '/world-objects',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillSettingsRoute = QuillSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillOverviewRoute = QuillOverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillMapsRoute = QuillMapsRouteImport.update({
+  id: '/maps',
+  path: '/maps',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillHistoryRoute = QuillHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillHelpAndInfoRoute = QuillHelpAndInfoRouteImport.update({
+  id: '/help-and-info',
+  path: '/help-and-info',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillFilesRoute = QuillFilesRouteImport.update({
+  id: '/files',
+  path: '/files',
+  getParentRoute: () => QuillRoute,
+} as any)
+const QuillCampaignsRoute = QuillCampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => QuillRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -85,10 +151,21 @@ export interface FileRoutesByFullPath {
   '/echo': typeof EchoRoute
   '/hammer': typeof HammerRoute
   '/mask': typeof MaskRoute
-  '/quill': typeof QuillRoute
+  '/quill': typeof QuillRouteWithChildren
   '/scroll': typeof ScrollRoute
   '/seed': typeof SeedRoute
   '/vault': typeof VaultRoute
+  '/quill/campaigns': typeof QuillCampaignsRoute
+  '/quill/files': typeof QuillFilesRoute
+  '/quill/help-and-info': typeof QuillHelpAndInfoRoute
+  '/quill/history': typeof QuillHistoryRoute
+  '/quill/maps': typeof QuillMapsRoute
+  '/quill/overview': typeof QuillOverviewRoute
+  '/quill/settings': typeof QuillSettingsRoute
+  '/quill/world-objects': typeof QuillWorldObjectsRoute
+  '/quill/worlds': typeof QuillWorldsRoute
+  '/quill/writing-tools': typeof QuillWritingToolsRoute
+  '/quill/': typeof QuillIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -98,10 +175,20 @@ export interface FileRoutesByTo {
   '/echo': typeof EchoRoute
   '/hammer': typeof HammerRoute
   '/mask': typeof MaskRoute
-  '/quill': typeof QuillRoute
   '/scroll': typeof ScrollRoute
   '/seed': typeof SeedRoute
   '/vault': typeof VaultRoute
+  '/quill/campaigns': typeof QuillCampaignsRoute
+  '/quill/files': typeof QuillFilesRoute
+  '/quill/help-and-info': typeof QuillHelpAndInfoRoute
+  '/quill/history': typeof QuillHistoryRoute
+  '/quill/maps': typeof QuillMapsRoute
+  '/quill/overview': typeof QuillOverviewRoute
+  '/quill/settings': typeof QuillSettingsRoute
+  '/quill/world-objects': typeof QuillWorldObjectsRoute
+  '/quill/worlds': typeof QuillWorldsRoute
+  '/quill/writing-tools': typeof QuillWritingToolsRoute
+  '/quill': typeof QuillIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -112,10 +199,21 @@ export interface FileRoutesById {
   '/echo': typeof EchoRoute
   '/hammer': typeof HammerRoute
   '/mask': typeof MaskRoute
-  '/quill': typeof QuillRoute
+  '/quill': typeof QuillRouteWithChildren
   '/scroll': typeof ScrollRoute
   '/seed': typeof SeedRoute
   '/vault': typeof VaultRoute
+  '/quill/campaigns': typeof QuillCampaignsRoute
+  '/quill/files': typeof QuillFilesRoute
+  '/quill/help-and-info': typeof QuillHelpAndInfoRoute
+  '/quill/history': typeof QuillHistoryRoute
+  '/quill/maps': typeof QuillMapsRoute
+  '/quill/overview': typeof QuillOverviewRoute
+  '/quill/settings': typeof QuillSettingsRoute
+  '/quill/world-objects': typeof QuillWorldObjectsRoute
+  '/quill/worlds': typeof QuillWorldsRoute
+  '/quill/writing-tools': typeof QuillWritingToolsRoute
+  '/quill/': typeof QuillIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +229,17 @@ export interface FileRouteTypes {
     | '/scroll'
     | '/seed'
     | '/vault'
+    | '/quill/campaigns'
+    | '/quill/files'
+    | '/quill/help-and-info'
+    | '/quill/history'
+    | '/quill/maps'
+    | '/quill/overview'
+    | '/quill/settings'
+    | '/quill/world-objects'
+    | '/quill/worlds'
+    | '/quill/writing-tools'
+    | '/quill/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -140,10 +249,20 @@ export interface FileRouteTypes {
     | '/echo'
     | '/hammer'
     | '/mask'
-    | '/quill'
     | '/scroll'
     | '/seed'
     | '/vault'
+    | '/quill/campaigns'
+    | '/quill/files'
+    | '/quill/help-and-info'
+    | '/quill/history'
+    | '/quill/maps'
+    | '/quill/overview'
+    | '/quill/settings'
+    | '/quill/world-objects'
+    | '/quill/worlds'
+    | '/quill/writing-tools'
+    | '/quill'
   id:
     | '__root__'
     | '/'
@@ -157,6 +276,17 @@ export interface FileRouteTypes {
     | '/scroll'
     | '/seed'
     | '/vault'
+    | '/quill/campaigns'
+    | '/quill/files'
+    | '/quill/help-and-info'
+    | '/quill/history'
+    | '/quill/maps'
+    | '/quill/overview'
+    | '/quill/settings'
+    | '/quill/world-objects'
+    | '/quill/worlds'
+    | '/quill/writing-tools'
+    | '/quill/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -167,7 +297,7 @@ export interface RootRouteChildren {
   EchoRoute: typeof EchoRoute
   HammerRoute: typeof HammerRoute
   MaskRoute: typeof MaskRoute
-  QuillRoute: typeof QuillRoute
+  QuillRoute: typeof QuillRouteWithChildren
   ScrollRoute: typeof ScrollRoute
   SeedRoute: typeof SeedRoute
   VaultRoute: typeof VaultRoute
@@ -252,8 +382,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quill/': {
+      id: '/quill/'
+      path: '/'
+      fullPath: '/quill/'
+      preLoaderRoute: typeof QuillIndexRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/writing-tools': {
+      id: '/quill/writing-tools'
+      path: '/writing-tools'
+      fullPath: '/quill/writing-tools'
+      preLoaderRoute: typeof QuillWritingToolsRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/worlds': {
+      id: '/quill/worlds'
+      path: '/worlds'
+      fullPath: '/quill/worlds'
+      preLoaderRoute: typeof QuillWorldsRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/world-objects': {
+      id: '/quill/world-objects'
+      path: '/world-objects'
+      fullPath: '/quill/world-objects'
+      preLoaderRoute: typeof QuillWorldObjectsRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/settings': {
+      id: '/quill/settings'
+      path: '/settings'
+      fullPath: '/quill/settings'
+      preLoaderRoute: typeof QuillSettingsRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/overview': {
+      id: '/quill/overview'
+      path: '/overview'
+      fullPath: '/quill/overview'
+      preLoaderRoute: typeof QuillOverviewRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/maps': {
+      id: '/quill/maps'
+      path: '/maps'
+      fullPath: '/quill/maps'
+      preLoaderRoute: typeof QuillMapsRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/history': {
+      id: '/quill/history'
+      path: '/history'
+      fullPath: '/quill/history'
+      preLoaderRoute: typeof QuillHistoryRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/help-and-info': {
+      id: '/quill/help-and-info'
+      path: '/help-and-info'
+      fullPath: '/quill/help-and-info'
+      preLoaderRoute: typeof QuillHelpAndInfoRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/files': {
+      id: '/quill/files'
+      path: '/files'
+      fullPath: '/quill/files'
+      preLoaderRoute: typeof QuillFilesRouteImport
+      parentRoute: typeof QuillRoute
+    }
+    '/quill/campaigns': {
+      id: '/quill/campaigns'
+      path: '/campaigns'
+      fullPath: '/quill/campaigns'
+      preLoaderRoute: typeof QuillCampaignsRouteImport
+      parentRoute: typeof QuillRoute
+    }
   }
 }
+
+interface QuillRouteChildren {
+  QuillCampaignsRoute: typeof QuillCampaignsRoute
+  QuillFilesRoute: typeof QuillFilesRoute
+  QuillHelpAndInfoRoute: typeof QuillHelpAndInfoRoute
+  QuillHistoryRoute: typeof QuillHistoryRoute
+  QuillMapsRoute: typeof QuillMapsRoute
+  QuillOverviewRoute: typeof QuillOverviewRoute
+  QuillSettingsRoute: typeof QuillSettingsRoute
+  QuillWorldObjectsRoute: typeof QuillWorldObjectsRoute
+  QuillWorldsRoute: typeof QuillWorldsRoute
+  QuillWritingToolsRoute: typeof QuillWritingToolsRoute
+  QuillIndexRoute: typeof QuillIndexRoute
+}
+
+const QuillRouteChildren: QuillRouteChildren = {
+  QuillCampaignsRoute: QuillCampaignsRoute,
+  QuillFilesRoute: QuillFilesRoute,
+  QuillHelpAndInfoRoute: QuillHelpAndInfoRoute,
+  QuillHistoryRoute: QuillHistoryRoute,
+  QuillMapsRoute: QuillMapsRoute,
+  QuillOverviewRoute: QuillOverviewRoute,
+  QuillSettingsRoute: QuillSettingsRoute,
+  QuillWorldObjectsRoute: QuillWorldObjectsRoute,
+  QuillWorldsRoute: QuillWorldsRoute,
+  QuillWritingToolsRoute: QuillWritingToolsRoute,
+  QuillIndexRoute: QuillIndexRoute,
+}
+
+const QuillRouteWithChildren = QuillRoute._addFileChildren(QuillRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -263,7 +500,7 @@ const rootRouteChildren: RootRouteChildren = {
   EchoRoute: EchoRoute,
   HammerRoute: HammerRoute,
   MaskRoute: MaskRoute,
-  QuillRoute: QuillRoute,
+  QuillRoute: QuillRouteWithChildren,
   ScrollRoute: ScrollRoute,
   SeedRoute: SeedRoute,
   VaultRoute: VaultRoute,

@@ -11,19 +11,22 @@ type ThemedRemixIconProps = {
 	fill?: boolean;
 	dark?: React.ReactNode;
 	light?: React.ReactNode;
+    size?: number;
 };
 
 export function IconSwapWrapper({
 	className,
 	children,
+    size,
 }: {
 	className: string;
 	children: React.ReactNode;
+    size: number;
 }) {
 	return (
 		<span
 			aria-hidden="true"
-			className={cn("relative inline-block size-5 shrink-0", className)}
+			className={cn(`size-${size}`, "relative inline-flex shrink-0 items-center justify-center", className)}
 		>
 			{children}
 		</span>
@@ -37,6 +40,7 @@ export function ThemedRemixIcon({
 	fill = true,
 	dark,
 	light,
+    size = 4,
 }: ThemedRemixIconProps) {
 	const lightClasses = cn(
 		"absolute transition-all dark:opacity-0 dark:scale-0 dark:-rotate-90 size-full!"
@@ -85,7 +89,7 @@ export function ThemedRemixIcon({
 	}
 
 	return (
-		<IconSwapWrapper className={className}>
+		<IconSwapWrapper className={cn("icon-wrapper", className)} size={size}>
 			{lightIcon}
 			{darkIcon}
 		</IconSwapWrapper>
