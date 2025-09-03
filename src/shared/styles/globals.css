@@ -53,6 +53,9 @@
 	--color-sidebar-foreground: var(--mauve12);
 	--color-sidebar-primary: var(--purple9);
 	--color-sidebar-primary-foreground: var(--purple12);
+    --color-sidebar-primary-hover: var(--purple10);
+    --color-sidebar-primary-foreground-hover: var(--purple11);
+    --color-sidebar-primary-active: var(--purple5);
 	--color-sidebar-accent: var(--mauve4);
 	--color-sidebar-accent-foreground: var(--mauve11);
 	--color-sidebar-border: var(--mauve7);
