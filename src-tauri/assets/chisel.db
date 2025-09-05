@@ -1,0 +1,310 @@
+-- Quill
+CREATE TABLE IF NOT EXISTS Worlds (
+    ID TEXT PRIMARY KEY,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    Genre TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Buildings (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_CelestialBodies (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Characters (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Conditions (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Conflicts (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Countries (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Currencies (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Deities (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Documents (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Ethnicities (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Items (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Landmarks (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Languages (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Materials (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Militaries (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Monsters (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Myths (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_NaturalLaws (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_NaturalRegions (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Organizations (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Professions (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Religions (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Rules (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Settlements (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Species (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Spells (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Technologies (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Titles (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Traditions (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS WO_Vehicles (
+    ID TEXT PRIMARY KEY,
+    WorldId TEXT NOT NULL REFERENCES Worlds(ID) ON DELETE CASCADE,
+    Name TEXT NOT NULL,
+    Description TEXT,
+    CreatedOn TEXT NOT NULL,
+    UpdatedOn TEXT NOT NULL,
+    CreatedBy TEXT NOT NULL,
+);
