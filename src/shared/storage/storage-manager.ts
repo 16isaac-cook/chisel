@@ -19,6 +19,28 @@ export function isTauriEnvironment(): boolean {
 }
 
 /**
+ * Initializes storage with the appropriate adapter based on environment.
+ * @param tauriAdapter - Adapter to use in Tauri environment
+ * @param webAdapter - Adapter to use in web environment
+ */
+export function initializeStorage(
+    tauriAdapter: StorageAdapter,
+    webAdapter: StorageAdapter,
+): void {
+    if (storageInstance) {
+        return; // Already initialized
+    }
+
+    if (isTauriEnvironment()) {
+        console.log("Initializing Tauri storage adapter");
+        storageInstance = tauriAdapter;
+    } else {
+        console.log("Initializing Web storage adapter");
+        storageInstance = webAdapter;
+    }
+}
+
+/**
  * Sets the storage adapter instance.
  * This should be called once during app initialization.
  */
@@ -33,7 +55,7 @@ export function setStorageAdapter(adapter: StorageAdapter): void {
 export function getStorageAdapter<T extends StorageAdapter>(): T {
     if (!storageInstance) {
         throw new Error(
-            "Storage adapter not initialized. Call setStorageAdapter() first.",
+            "Storage adapter not initialized. Call initializeStorage() or setStorageAdapter() first.",
         );
     }
     return storageInstance as T;

@@ -65,6 +65,7 @@ function SidebarController({ children }: { children: ReactNode }) {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     useTheme();
+
     return (
         <SidebarController>
             <div className="flex flex-col h-screen w-full">
